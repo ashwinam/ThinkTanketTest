@@ -56,3 +56,59 @@ print('--------2nd question answer------------')
 for obj in object['topping']:
     if 'Chocolate' in obj['type']:
         print(obj, end='')
+
+# 3 Question
+
+'''
+output:-
+[{
+    "name" : "mihir",
+    "data" : [{"age" : 23}]
+},
+{
+    "name" : "hiren",
+    "data" : [{"age" : 21}]
+},
+{
+    "name" : "shashank",
+    "data" : [{"age" : 20}]
+},
+{
+    "name" : "vasudha",
+    "data" : []
+}
+]
+
+'''
+
+a = [{
+    "name": "mihir",
+    "data": []
+},
+    {
+    "name": "hiren",
+    "data": []
+},
+    {
+    "name": "shashank",
+    "data": []
+},
+    {
+    "name": "vasudha",
+    "data": []
+}
+]
+
+
+b = {
+    "mihir": {"age": 23},
+    "hiren": {"age": 21},
+    "shashank": {"age": 20},
+
+}
+print()
+for obj in a:
+    if obj['name'] in b:
+        obj['data'].append(b[obj['name']])
+
+print(a)
