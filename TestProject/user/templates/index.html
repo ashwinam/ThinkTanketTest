@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up and Sign In</title>
+    <!-- Add Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Center the buttons horizontally and vertically */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* 100% of the viewport height */
+        background: linear-gradient(
+          to right,
+          #3498db,
+          #f4791f
+        ); /* Gradient background */
+        margin: 0; /* Remove default margin */
+      }
+      /* Reduce spacing between buttons */
+      .btn {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <button class="btn btn-primary" onclick="navigateToURL(' {% url "create-user" %} ')">Sign Up</button>
+          <button class="btn btn-secondary" onclick="navigateToURL(' {% url "login" %} ')">Sign In</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js (optional) for Bootstrap functionality -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Optional: Include Popper.js for Bootstrap tooltips and popovers -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <script>
+        function navigateToURL(url) {
+          window.location.href = url;
+        }
+      </script>
+  </body>
+</html>
