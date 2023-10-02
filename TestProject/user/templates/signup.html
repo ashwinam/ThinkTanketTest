@@ -46,11 +46,14 @@
             
             <div class="form-group">
                 {{ form.hobbies.label_tag }}
-                {% for checkbox in form.hobbies %}
-                    <div class="form-check">
-                        {{ checkbox }}
-                    </div>
-                {% endfor %}
+                <select class="form-control" id="gender" name="gender" multiple>
+
+                    <option></option>
+                    {% for checkbox in hobbies %}
+                        <option value="{{checkbox.id}}">{{ checkbox.hobbies }}</option>
+                    {% endfor %}
+                </select>
+                    
             </div>
             
             <button type="submit" class="btn btn-primary">Sign Up</button>

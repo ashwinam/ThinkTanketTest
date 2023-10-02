@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DeleteView, UpdateView, CreateView
 
 from .forms import SignInForm, SignUpForm
-from .models import UserTbl
+from .models import HobbiesTbl, UserTbl
 
 
 class CustomLoginView(LoginView):
@@ -36,7 +36,8 @@ class UserCreateView(CreateView):
     form_class = SignUpForm
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        print('I m here')
+        print(HobbiesTbl.objects.all(), 'Hobbies')
+        kwargs['hobbies'] = HobbiesTbl.objects.all()
         return super().get_context_data(**kwargs)
 
 
