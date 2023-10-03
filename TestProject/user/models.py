@@ -54,4 +54,4 @@ class UserTbl(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     def __str__(self) -> str:
-        return str(self.age)
+        return str(self.username)

@@ -12,6 +12,11 @@
             {% csrf_token %}
             
             <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
                 {{ form.first_name.label_tag }}
                 {{ form.first_name }}
             </div>
@@ -46,7 +51,7 @@
             
             <div class="form-group">
                 {{ form.hobbies.label_tag }}
-                <select class="form-control" id="gender" name="gender" multiple>
+                <select class="form-control" id="gender" name="hobbies" multiple>
 
                     <option></option>
                     {% for checkbox in hobbies %}

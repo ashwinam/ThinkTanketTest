@@ -1,5 +1,6 @@
 from typing import Any
-from django.shortcuts import render, HttpResponse
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -30,15 +31,33 @@ class UserListView(LoginRequiredMixin, ListView):
     ordering = ['-created_at']
 
 
-class UserCreateView(CreateView):
+class UserCreateView(LoginRequiredMixin, CreateView):
     model = UserTbl
     template_name = 'signup.html'
     form_class = SignUpForm
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        print(HobbiesTbl.objects.all(), 'Hobbies')
         kwargs['hobbies'] = HobbiesTbl.objects.all()
         return super().get_context_data(**kwargs)
+    
+    def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+        hobbies = request.POST.getlist('hobbies', None)
+        print(hobbies, 'hhhh')
+        form = SignUpForm(request.POST)
+
+
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.save()
+            print(form, '\n\n')
+
+            if hobbies:
+                form.hobbies.add(*hobbies)
+            return redirect('user-list')
+        else:
+            print(form.errors)
+
+        return render(request, 'signup.html')
 
 
 class UserDeleteView(LoginRequiredMixin, DeleteView):
@@ -50,5 +69,9 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = UserTbl
     template_name = 'signup.html'
-    fields = ['user__username', 'user__email']
+    form_class = SignUpForm
     success_url = reverse_lazy('user-list')
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        kwargs['hobbies'] = HobbiesTbl.objects.all()
+        return super().get_context_data(**kwargs)

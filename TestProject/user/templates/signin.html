@@ -12,8 +12,11 @@
     <div class="container">
       <h2>Sign In</h2>
       <form method="post">
-        {% csrf_token %} {{ form.email.label_tag }} {{ form.email }} {{
-        form.password.label_tag }} {{ form.password }}
+        {% csrf_token %}
+         {{ form.email.label_tag }} 
+         {{ form.email }} 
+        {{ form.password.label_tag }} 
+        {{ form.password }}
 
         <button type="submit" class="btn btn-primary">Sign In</button>
       </form>
