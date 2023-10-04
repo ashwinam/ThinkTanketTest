@@ -8,6 +8,7 @@ class SignUpForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'username', 'email', 'mobile_no', 'date_of_birth', 'hobbies']
         widgets = {
             'hobbies': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
+            'date_of_birth': forms.DateInput(attrs={'type':'date'})
         }
 
 

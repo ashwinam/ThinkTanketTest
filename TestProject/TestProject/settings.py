@@ -132,3 +132,5 @@ AUTH_USER_MODEL = 'user.UserTbl'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/users/'
+
+LOGOUT_REDIRECT_URL = 'login'
